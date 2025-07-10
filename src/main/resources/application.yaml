@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Fisguei Mais Um - Core
+  datasource:
+    url: jdbc:h2:mem:db-fmu
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
