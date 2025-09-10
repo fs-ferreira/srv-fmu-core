@@ -24,3 +24,7 @@ management:
   endpoint:
     health:
       show-details: never
+
+snowflake:
+  datacenter-id: 1
+  worker-id: 1
