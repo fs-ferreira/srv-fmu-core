@@ -7,4 +7,6 @@ import java.util.List;
 public interface FishService {
 
     List<FishRecord> findAll();
+
+    FishRecord create(FishRecord fishRecord);
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Aspect()
 @Component
 public class NotEmptyCollectionAspect {
-    private static final String NOT_FOUND_MESSAGE = "Nenhum recurso encontrado";
+    private static final String NOT_FOUND_MESSAGE = "No resource found";
 
     @Around("@annotation(br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.thrower.annotation.NotEmptyCollection)")
     public Object checkNotEmpty(ProceedingJoinPoint pjp) throws Throwable {

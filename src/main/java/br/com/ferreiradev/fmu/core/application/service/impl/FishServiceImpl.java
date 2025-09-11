@@ -1,5 +1,6 @@
 package br.com.ferreiradev.fmu.core.application.service.impl;
 
+import br.com.ferreiradev.fmu.core.application.mapper.FishMapper;
 import br.com.ferreiradev.fmu.core.application.service.FishService;
 import br.com.ferreiradev.fmu.core.domain.repository.FishRepository;
 import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.thrower.annotation.NotEmptyCollection;
@@ -14,6 +15,8 @@ public class FishServiceImpl implements FishService {
 
     @Autowired
     FishRepository repository;
+    @Autowired
+    FishMapper mapper;
 
     @Override
     @NotEmptyCollection
@@ -23,4 +26,11 @@ public class FishServiceImpl implements FishService {
                 .map(FishRecord::new)
                 .toList();
     }
+
+    @Override
+    public FishRecord create(FishRecord fishRecord) {
+        return mapper.toRecord(repository.save(mapper.toEntity(fishRecord)));
+    }
+
+
 }
