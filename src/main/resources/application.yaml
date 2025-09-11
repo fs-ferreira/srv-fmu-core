@@ -26,5 +26,5 @@ management:
       show-details: never
 
 snowflake:
-  datacenter-id: 1
-  worker-id: 1
+  datacenter-id: ${DATACENTER_ID}
+  worker-id: ${WORKER_ID}
