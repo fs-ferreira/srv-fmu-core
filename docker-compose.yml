@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16
+    container_name: fmu_postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: db_fmu
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - fmu-network
+  pg_admin:
+      image: dpage/pgadmin4
+      container_name: fmu_pgadmin
+      environment:
+        PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_PASS}
+      ports:
+        - "15432:80"
+      depends_on:
+        - postgres
+      networks:
+        - fmu-network
+volumes:
+  postgres_data:
+networks:
+  fmu-network:
+    driver: bridge
