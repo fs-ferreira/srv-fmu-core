@@ -1,8 +1,11 @@
 package br.com.ferreiradev.fmu.core.domain.model;
 
 import br.com.ferreiradev.fmu.core.domain.model.enums.FishType;
-import br.com.ferreiradev.fmu.core.infrastructure.id.annotation.SnowflakeId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -12,8 +15,9 @@ import lombok.Data;
 @Table(name = "tb_fish")
 public class Fish {
     @Id
-    @SnowflakeId
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Enumerated(EnumType.STRING)
     private FishType type;
 }
