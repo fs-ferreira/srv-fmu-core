@@ -1,6 +1,7 @@
 package br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.thrower;
 
 import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.ResourceNotFoundException;
+import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -9,10 +10,12 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.List;
 
+import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.NOT_FOUND_MESSAGE;
+
+
 @Aspect()
 @Component
 public class NotEmptyCollectionAspect {
-    private static final String NOT_FOUND_MESSAGE = "No resource found";
 
     @Around("@annotation(br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.thrower.annotation.NotEmptyCollection)")
     public Object checkNotEmpty(ProceedingJoinPoint pjp) throws Throwable {

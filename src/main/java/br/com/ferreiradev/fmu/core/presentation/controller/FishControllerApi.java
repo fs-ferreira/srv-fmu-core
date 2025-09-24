@@ -30,7 +30,7 @@ public interface FishControllerApi extends BaseControllerApi {
     ResponseEntity<List<FishRecord>> findAll();
 
     @Operation(summary = "Add a new fish")
-    @ApiResponse(responseCode = "200", description = "Fish created",
+    @ApiResponse(responseCode = "201", description = "Fish created",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = FishRecord.class)))
     @PostMapping

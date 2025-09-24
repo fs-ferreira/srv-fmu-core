@@ -1,6 +1,7 @@
 package br.com.ferreiradev.fmu.core.domain.model;
 
 import br.com.ferreiradev.fmu.core.domain.model.enums.FishType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,7 +18,9 @@ public class Fish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     @Enumerated(EnumType.STRING)
     private FishType type;
 }

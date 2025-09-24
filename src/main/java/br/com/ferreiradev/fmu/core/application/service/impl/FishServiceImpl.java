@@ -23,13 +23,13 @@ public class FishServiceImpl implements FishService {
     public List<FishRecord> findAll() {
         return repository.findAll()
                 .stream()
-                .map(FishRecord::new)
+                .map(mapper::toRecord)
                 .toList();
     }
 
     @Override
-    public FishRecord create(FishRecord fishRecord) {
-        return mapper.toRecord(repository.save(mapper.toEntity(fishRecord)));
+    public FishRecord create(FishRecord record) {
+        return mapper.toRecord(repository.save(mapper.toEntity(record)));
     }
 
 
