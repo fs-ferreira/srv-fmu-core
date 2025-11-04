@@ -9,6 +9,7 @@ import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.thrower
 import br.com.ferreiradev.fmu.core.presentation.dto.FishingLogRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,11 +34,9 @@ public class FishingLogServiceImpl implements FishingLogService {
 
     @Override
     public FishingLogRecord create(FishingLogRecord record) {
-
         FishingLog log = repository.save(mapper.toEntity(record));
 
-
-        return mapper.toRecord(log);
+        return mapper.toRecord(findByIdWithFishOrThrow(log.getId()));
     }
 
     @Override
@@ -49,5 +48,9 @@ public class FishingLogServiceImpl implements FishingLogService {
 
     private FishingLog findByIdOrThrow(Long id){
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_MESSAGE));
+    }
+
+    private FishingLog findByIdWithFishOrThrow(Long id){
+        return repository.findByIdWithFish(id).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_MESSAGE));
     }
 }
