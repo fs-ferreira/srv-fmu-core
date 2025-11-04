@@ -7,21 +7,19 @@ import br.com.ferreiradev.fmu.core.domain.repository.FishingLogRepository;
 import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.ResourceNotFoundException;
 import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.thrower.annotation.NotEmptyCollection;
 import br.com.ferreiradev.fmu.core.presentation.dto.FishingLogRecord;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.NOT_FOUND_MESSAGE;
 
 @Service
+@RequiredArgsConstructor
 public class FishingLogServiceImpl implements FishingLogService {
 
-    @Autowired
-    FishingLogRepository repository;
-    @Autowired
-    FishingLogMapper mapper;
+    private final FishingLogRepository repository;
+    private final FishingLogMapper mapper;
 
     @Override
     @NotEmptyCollection

@@ -5,18 +5,17 @@ import br.com.ferreiradev.fmu.core.application.service.FishService;
 import br.com.ferreiradev.fmu.core.domain.repository.FishRepository;
 import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.thrower.annotation.NotEmptyCollection;
 import br.com.ferreiradev.fmu.core.presentation.dto.FishRecord;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FishServiceImpl implements FishService {
 
-    @Autowired
-    FishRepository repository;
-    @Autowired
-    FishMapper mapper;
+    private final FishRepository repository;
+    private final  FishMapper mapper;
 
     @Override
     @NotEmptyCollection

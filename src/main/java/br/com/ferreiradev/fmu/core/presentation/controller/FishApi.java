@@ -17,7 +17,7 @@ import java.util.List;
 
 @Tag(name = "Fish", description = "CRUD Endpoints - Fish entity")
 @RequestMapping("/fish")
-public interface FishControllerApi extends BaseControllerApi {
+public interface FishApi extends BaseApi {
 
     @Operation(summary = "List all fishes")
     @ApiResponse(responseCode = "200", description = "Fishes' list found",

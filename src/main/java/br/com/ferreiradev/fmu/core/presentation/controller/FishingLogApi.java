@@ -19,7 +19,7 @@ import java.util.List;
 
 @Tag(name = "Fishing Log", description = "Business endpoints - Fishing Log")
 @RequestMapping("/fish/log")
-public interface FishingLogControllerApi extends BaseControllerApi {
+public interface FishingLogApi extends BaseApi {
 
     @Operation(summary = "List all fishing logs")
     @ApiResponse(responseCode = "200", description = "Fishing logs' list found",

@@ -1,7 +1,7 @@
 package br.com.ferreiradev.fmu.core.presentation.controller.impl;
 
 import br.com.ferreiradev.fmu.core.application.service.FishingLogService;
-import br.com.ferreiradev.fmu.core.presentation.controller.FishingLogControllerApi;
+import br.com.ferreiradev.fmu.core.presentation.controller.FishingLogApi;
 import br.com.ferreiradev.fmu.core.presentation.dto.FishingLogRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class FishingLogControllerImpl implements FishingLogControllerApi {
+public class FishingLogController implements FishingLogApi {
 
     @Autowired
     private FishingLogService service;
