@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.INVALID_CREDENTIALS_MESSAGE;
 
+@Deprecated
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 

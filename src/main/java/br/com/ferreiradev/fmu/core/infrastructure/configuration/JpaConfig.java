@@ -1,12 +1,13 @@
 package br.com.ferreiradev.fmu.core.infrastructure.configuration;
 
 import br.com.ferreiradev.fmu.core.domain.model.User;
-import br.com.ferreiradev.fmu.core.domain.repository.UserRepository;
+import br.com.ferreiradev.fmu.core.infrastructure.security.CustomAuthentication;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Optional;
@@ -16,20 +17,19 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JpaConfig implements AuditorAware<User> {
 
-    private final UserRepository userRepository;
-
     @Override
     @NonNull
     public Optional<User> getCurrentAuditor() {
-
-        var auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth == null || !auth.isAuthenticated()) {
             return Optional.empty();
         }
 
-        String username = auth.getName();
+        if(!(auth instanceof CustomAuthentication customAuth)){
+            return Optional.empty();
+        }
 
-        return userRepository.findByUsername(username);
+        return Optional.of(customAuth.getUser());
     }
 }
