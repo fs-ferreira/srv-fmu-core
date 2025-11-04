@@ -1,6 +1,5 @@
 package br.com.ferreiradev.fmu.core.infrastructure.security.service;
 
-import br.com.ferreiradev.fmu.core.application.service.UserService;
 import br.com.ferreiradev.fmu.core.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

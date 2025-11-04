@@ -3,7 +3,7 @@ package br.com.ferreiradev.fmu.core.presentation.controller.impl;
 import br.com.ferreiradev.fmu.core.application.service.FishingLogService;
 import br.com.ferreiradev.fmu.core.presentation.controller.FishingLogApi;
 import br.com.ferreiradev.fmu.core.presentation.dto.FishingLogRecord;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class FishingLogController implements FishingLogApi {
 
-    @Autowired
-    private FishingLogService service;
+    private final FishingLogService service;
 
     @Override
     public ResponseEntity<List<FishingLogRecord>> findAll() {

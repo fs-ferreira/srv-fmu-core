@@ -2,7 +2,6 @@ package br.com.ferreiradev.fmu.core.domain.model;
 
 import br.com.ferreiradev.fmu.core.domain.model.enums.FishingPlace;
 import br.com.ferreiradev.fmu.core.infrastructure.id.annotation.SnowflakeId;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
