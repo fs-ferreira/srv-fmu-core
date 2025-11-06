@@ -20,19 +20,37 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder encoder;
     private final UserMapper mapper;
 
-    public void create(UserRecord user){
+    @Override
+    public UserRecord create(UserRecord user) {
         var pass = user.password();
 
         User entity = mapper.toEntity(user);
-        entity.setPassword(encoder.encode(pass));
-        repository.save(entity);
+        if (pass != null) {
+            entity.setPassword(encoder.encode(pass));
+        }
+        return mapper.toRecord(repository.save(entity));
     }
 
-    public UserRecord findByUsername(String username){
-        return mapper.toRecord(findOrThrowBy(username));
+    @Override
+    public UserRecord findByUsername(String username) {
+        return mapper.toRecord(findOrThrowBy("username", username));
     }
 
-    private User findOrThrowBy(String username){
-        return repository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_MESSAGE));
+    @Override
+    public UserRecord findByEmail(String email) {
+        return mapper.toRecord(findOrThrowBy("email", email));
+    }
+
+
+    private User findOrThrowBy(String key, String value) {
+        return switch (key) {
+            case "username" -> repository.findByUsername(value).orElseThrow(this::resourceNotFoundException);
+            case "email" -> repository.findByEmail(value).orElseThrow(this::resourceNotFoundException);
+            default -> throw resourceNotFoundException();
+        };
+    }
+
+    private ResourceNotFoundException resourceNotFoundException() {
+        return new ResourceNotFoundException(NOT_FOUND_MESSAGE);
     }
 }

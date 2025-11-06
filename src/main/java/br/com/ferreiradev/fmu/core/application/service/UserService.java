@@ -4,6 +4,7 @@ import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 
 public interface UserService {
 
-    void create(UserRecord user);
+    UserRecord create(UserRecord user);
     UserRecord findByUsername(String username);
+    UserRecord findByEmail(String email);
 }

@@ -1,7 +1,6 @@
 package br.com.ferreiradev.fmu.core.infrastructure.security;
 
-import br.com.ferreiradev.fmu.core.application.mapper.UserMapper;
-import br.com.ferreiradev.fmu.core.domain.model.User;
+import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -15,12 +14,11 @@ import java.util.Collection;
 @Getter
 public class CustomAuthentication implements Authentication {
 
-    private final User user;
-    private final UserMapper mapper;
+    private final UserRecord user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRoles()
+        return user.roles()
                 .stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .toList();
@@ -28,17 +26,17 @@ public class CustomAuthentication implements Authentication {
 
     @Override
     public Object getCredentials() {
-        return user.getPassword();
+        return user.password();
     }
 
     @Override
     public Object getDetails() {
-        return mapper.toRecord(user);
+        return user;
     }
 
     @Override
     public Object getPrincipal() {
-        return mapper.toRecord(user);
+        return user;
     }
 
     @Override
@@ -53,6 +51,6 @@ public class CustomAuthentication implements Authentication {
 
     @Override
     public String getName() {
-        return user.getUsername();
+        return user.username();
     }
 }

@@ -29,10 +29,6 @@ spring:
             client-secret: ${GOOGLE_OAUTH_SECRET_KEY}
 server:
   port: 8080
-  servlet:
-    session:
-      cookie:
-        same-site: lax
 management:
   endpoints:
     web:
@@ -45,10 +41,3 @@ management:
 snowflake:
   datacenter-id: ${DATACENTER_ID}
   worker-id: ${WORKER_ID}
-
-logging:
-  level:
-    org:
-      springframework:
-        web: DEBUG
-        security: DEBUG

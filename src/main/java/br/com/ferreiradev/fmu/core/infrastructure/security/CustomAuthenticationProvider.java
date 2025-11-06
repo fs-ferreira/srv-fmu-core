@@ -1,14 +1,13 @@
 package br.com.ferreiradev.fmu.core.infrastructure.security;
 
-import br.com.ferreiradev.fmu.core.application.mapper.UserMapper;
-import br.com.ferreiradev.fmu.core.domain.model.User;
-import br.com.ferreiradev.fmu.core.domain.repository.UserRepository;
+import br.com.ferreiradev.fmu.core.application.service.UserService;
+import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -20,25 +19,24 @@ import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     private final PasswordEncoder encoder;
-    private final UserRepository repository;
-    private final UserMapper mapper;
+    private final UserService service;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username  = authentication.getName();
         String pass = authentication.getCredentials().toString();
 
-        User user = repository.findByUsername(username).orElseThrow(this::invalidCredentialsException);
+        UserRecord user = service.findByUsername(username);
 
         validatePassword(pass, user);
 
-        return new CustomAuthentication(user, mapper);
+        return new CustomAuthentication(user);
     }
 
-    private void validatePassword(String pass, User user) {
-        boolean passwordsMatches = encoder.matches(pass, user.getPassword());
+    private void validatePassword(String pass, UserRecord user) {
+        boolean passwordsMatches = encoder.matches(pass, user.password());
         if(!passwordsMatches){
-            throw invalidCredentialsException();
+            throw new BadCredentialsException(INVALID_CREDENTIALS_MESSAGE);
         }
     }
 
@@ -46,9 +44,5 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return authentication.isAssignableFrom(UsernamePasswordAuthenticationToken.class);
 
-    }
-
-    private UsernameNotFoundException invalidCredentialsException(){
-        return new UsernameNotFoundException(INVALID_CREDENTIALS_MESSAGE);
     }
 }

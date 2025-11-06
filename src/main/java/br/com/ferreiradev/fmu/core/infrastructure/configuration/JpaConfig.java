@@ -2,6 +2,7 @@ package br.com.ferreiradev.fmu.core.infrastructure.configuration;
 
 import br.com.ferreiradev.fmu.core.domain.model.User;
 import br.com.ferreiradev.fmu.core.infrastructure.security.CustomAuthentication;
+import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +16,11 @@ import java.util.Optional;
 @Configuration
 @EnableJpaAuditing
 @RequiredArgsConstructor
-public class JpaConfig implements AuditorAware<User> {
+public class JpaConfig implements AuditorAware<UserRecord> {
 
     @Override
     @NonNull
-    public Optional<User> getCurrentAuditor() {
+    public Optional<UserRecord> getCurrentAuditor() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth == null || !auth.isAuthenticated()) {
