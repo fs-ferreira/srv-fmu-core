@@ -15,6 +15,11 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
     baseline-on-migrate: true
+    placeholders:
+      admin_id: ${FMU_ADMIN_ID}
+      admin_username: ${FMU_ADMIN_USERNAME}
+      admin_password: ${FMU_ADMIN_PASS}
+      admin_email: ${FMU_ADMIN_EMAIL}
   security:
     oauth2:
       client:
@@ -24,7 +29,10 @@ spring:
             client-secret: ${GOOGLE_OAUTH_SECRET_KEY}
 server:
   port: 8080
-
+  servlet:
+    session:
+      cookie:
+        same-site: lax
 management:
   endpoints:
     web:
@@ -37,3 +45,10 @@ management:
 snowflake:
   datacenter-id: ${DATACENTER_ID}
   worker-id: ${WORKER_ID}
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: DEBUG

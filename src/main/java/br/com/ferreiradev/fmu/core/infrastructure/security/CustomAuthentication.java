@@ -53,6 +53,6 @@ public class CustomAuthentication implements Authentication {
 
     @Override
     public String getName() {
-        return "";
+        return user.getUsername();
     }
 }
