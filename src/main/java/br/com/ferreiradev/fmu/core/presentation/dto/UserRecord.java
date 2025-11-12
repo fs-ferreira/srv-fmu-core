@@ -10,8 +10,8 @@ import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.
 import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.REQUIRED_FIELD_MESSAGE;
 
 @Builder
-public record UserRecord(@NotBlank(message = "'username'" + REQUIRED_FIELD_MESSAGE) String username,
-                         @NotBlank(message = "'password'" + REQUIRED_FIELD_MESSAGE) String password,
-                         @NotBlank(message = "'email'" +  REQUIRED_FIELD_MESSAGE) @Email(message = INVALID_EMAIL_MESSAGE) String email,
+public record UserRecord(@NotBlank(message = REQUIRED_FIELD_MESSAGE) String username,
+                         @NotBlank(message = REQUIRED_FIELD_MESSAGE) String password,
+                         @NotBlank(message = REQUIRED_FIELD_MESSAGE) @Email(message = INVALID_EMAIL_MESSAGE) String email,
                          List<String> roles) {
 }

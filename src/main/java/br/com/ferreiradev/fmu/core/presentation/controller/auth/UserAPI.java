@@ -1,5 +1,6 @@
-package br.com.ferreiradev.fmu.core.presentation.controller;
+package br.com.ferreiradev.fmu.core.presentation.controller.auth;
 
+import br.com.ferreiradev.fmu.core.presentation.controller.BaseApi;
 import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

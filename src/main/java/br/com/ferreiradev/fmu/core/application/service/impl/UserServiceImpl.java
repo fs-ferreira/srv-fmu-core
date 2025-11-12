@@ -2,7 +2,7 @@ package br.com.ferreiradev.fmu.core.application.service.impl;
 
 import br.com.ferreiradev.fmu.core.application.mapper.UserMapper;
 import br.com.ferreiradev.fmu.core.application.service.UserService;
-import br.com.ferreiradev.fmu.core.domain.model.User;
+import br.com.ferreiradev.fmu.core.domain.model.auth.User;
 import br.com.ferreiradev.fmu.core.domain.repository.UserRepository;
 import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.ResourceNotFoundException;
 import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;

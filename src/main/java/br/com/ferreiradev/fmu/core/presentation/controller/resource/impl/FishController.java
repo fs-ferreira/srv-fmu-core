@@ -1,7 +1,7 @@
-package br.com.ferreiradev.fmu.core.presentation.controller.impl;
+package br.com.ferreiradev.fmu.core.presentation.controller.resource.impl;
 
 import br.com.ferreiradev.fmu.core.application.service.FishService;
-import br.com.ferreiradev.fmu.core.presentation.controller.FishApi;
+import br.com.ferreiradev.fmu.core.presentation.controller.resource.FishApi;
 import br.com.ferreiradev.fmu.core.presentation.dto.FishRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class FishController implements FishApi {
     }
 
     @Override
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<FishRecord> create(FishRecord record) {
         return ResponseEntity.ok(fishService.create(record));
     }

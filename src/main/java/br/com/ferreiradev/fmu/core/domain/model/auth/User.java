@@ -1,4 +1,4 @@
-package br.com.ferreiradev.fmu.core.domain.model;
+package br.com.ferreiradev.fmu.core.domain.model.auth;
 
 import br.com.ferreiradev.fmu.core.infrastructure.id.annotation.SnowflakeId;
 import io.hypersistence.utils.hibernate.type.array.ListArrayType;

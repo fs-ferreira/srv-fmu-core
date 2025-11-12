@@ -1,7 +1,7 @@
-package br.com.ferreiradev.fmu.core.presentation.controller.impl;
+package br.com.ferreiradev.fmu.core.presentation.controller.resource.impl;
 
 import br.com.ferreiradev.fmu.core.application.service.FishingLogService;
-import br.com.ferreiradev.fmu.core.presentation.controller.FishingLogApi;
+import br.com.ferreiradev.fmu.core.presentation.controller.resource.FishingLogApi;
 import br.com.ferreiradev.fmu.core.presentation.dto.FishingLogRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

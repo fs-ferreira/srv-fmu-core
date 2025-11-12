@@ -1,6 +1,9 @@
 package br.com.ferreiradev.fmu.core.infrastructure.configuration;
 
-import br.com.ferreiradev.fmu.core.domain.model.User;
+import br.com.ferreiradev.fmu.core.application.mapper.UserMapper;
+import br.com.ferreiradev.fmu.core.application.service.UserService;
+import br.com.ferreiradev.fmu.core.domain.model.auth.User;
+import br.com.ferreiradev.fmu.core.domain.repository.UserRepository;
 import br.com.ferreiradev.fmu.core.infrastructure.security.CustomAuthentication;
 import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 import lombok.NonNull;
@@ -16,11 +19,13 @@ import java.util.Optional;
 @Configuration
 @EnableJpaAuditing
 @RequiredArgsConstructor
-public class JpaConfig implements AuditorAware<UserRecord> {
+public class JpaConfig implements AuditorAware<User> {
+
+    private final UserRepository repository;
 
     @Override
     @NonNull
-    public Optional<UserRecord> getCurrentAuditor() {
+    public Optional<User> getCurrentAuditor() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth == null || !auth.isAuthenticated()) {
@@ -31,6 +36,6 @@ public class JpaConfig implements AuditorAware<UserRecord> {
             return Optional.empty();
         }
 
-        return Optional.of(customAuth.getUser());
+        return repository.findByUsername(customAuth.getUser().username());
     }
 }

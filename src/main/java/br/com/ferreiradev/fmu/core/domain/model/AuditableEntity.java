@@ -1,5 +1,6 @@
 package br.com.ferreiradev.fmu.core.domain.model;
 
+import br.com.ferreiradev.fmu.core.domain.model.auth.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;

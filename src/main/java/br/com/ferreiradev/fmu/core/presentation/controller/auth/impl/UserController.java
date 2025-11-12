@@ -1,7 +1,7 @@
-package br.com.ferreiradev.fmu.core.presentation.controller.impl;
+package br.com.ferreiradev.fmu.core.presentation.controller.auth.impl;
 
 import br.com.ferreiradev.fmu.core.application.service.UserService;
-import br.com.ferreiradev.fmu.core.presentation.controller.UserAPI;
+import br.com.ferreiradev.fmu.core.presentation.controller.auth.UserAPI;
 import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

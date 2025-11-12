@@ -1,6 +1,6 @@
 package br.com.ferreiradev.fmu.core.domain.repository;
 
-import br.com.ferreiradev.fmu.core.domain.model.User;
+import br.com.ferreiradev.fmu.core.domain.model.auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

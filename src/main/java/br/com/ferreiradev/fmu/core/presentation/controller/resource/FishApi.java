@@ -1,6 +1,7 @@
-package br.com.ferreiradev.fmu.core.presentation.controller;
+package br.com.ferreiradev.fmu.core.presentation.controller.resource;
 
 import br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.dto.ErrorResponse;
+import br.com.ferreiradev.fmu.core.presentation.controller.BaseApi;
 import br.com.ferreiradev.fmu.core.presentation.dto.FishRecord;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
