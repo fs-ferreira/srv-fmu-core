@@ -7,5 +7,5 @@ import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.
 public record ClientRecord(@NotBlank(message = REQUIRED_FIELD_MESSAGE) String clientId,
                            @NotBlank(message = REQUIRED_FIELD_MESSAGE) String clientSecret,
                            @NotBlank(message = REQUIRED_FIELD_MESSAGE) String redirectUri,
-                           @NotBlank(message = REQUIRED_FIELD_MESSAGE) String scope) {
+                           String scope) {
 }
