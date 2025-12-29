@@ -35,7 +35,7 @@ public class AuthorizationServiceConfig {
 
     @Bean
     @Order(1)
-    public SecurityFilterChain authServerFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain authServerFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfigurer authorizationServerConfigurer =
                 new OAuth2AuthorizationServerConfigurer();
 
@@ -44,30 +44,33 @@ public class AuthorizationServiceConfig {
         http
                 .securityMatcher(authorizationServerConfigurer.getEndpointsMatcher())
                 .with(authorizationServerConfigurer, Customizer.withDefaults())
-                .csrf(csrf -> csrf.ignoringRequestMatchers(authorizationServerConfigurer.getEndpointsMatcher()))
-                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+                .formLogin(Customizer.withDefaults())
+                .oauth2Login(Customizer.withDefaults())
+                .authorizeHttpRequests(authorize ->
+                        authorize.anyRequest().authenticated());
 
         return http.build();
     }
 
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
 
     @Bean
-    public TokenSettings tokenSettings(){
-        return TokenSettings.builder()
+    public TokenSettings tokenSettings() {
+        return TokenSettings
+                .builder()
                 .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
                 .accessTokenTimeToLive(Duration.ofMinutes(5))
+                .refreshTokenTimeToLive(Duration.ofMinutes(30))
                 .build();
     }
 
     @Bean
     public ClientSettings clientSettings() {
-        return ClientSettings.builder()
-                .requireAuthorizationConsent(false)
-                .build();
+        return ClientSettings.builder().requireAuthorizationConsent(false).build();
     }
 
     @Bean
@@ -87,11 +90,7 @@ public class AuthorizationServiceConfig {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
 
-        return new RSAKey
-                .Builder(publicKey)
-                .privateKey(privateKey)
-                .keyID(UUID.randomUUID().toString())
-                .build();
+        return new RSAKey.Builder(publicKey).privateKey(privateKey).keyID(UUID.randomUUID().toString()).build();
     }
 
     @Bean
