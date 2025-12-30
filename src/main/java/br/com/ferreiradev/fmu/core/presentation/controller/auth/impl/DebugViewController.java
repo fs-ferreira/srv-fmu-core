@@ -22,6 +22,6 @@ public class DebugViewController {
     @GetMapping("/authorized")
     @ResponseBody
     public String home(@RequestParam("code") String code) {
-        return "Authorized with code: " + code;
+        return code;
     }
 }

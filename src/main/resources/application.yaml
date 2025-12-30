@@ -41,3 +41,9 @@ management:
 snowflake:
   datacenter-id: ${DATACENTER_ID}
   worker-id: ${WORKER_ID}
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

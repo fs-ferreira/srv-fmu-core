@@ -21,18 +21,25 @@ public class ResourceServiceConfig {
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http,
             LoginSocialSuccessHandler successHandler,
-            JWTCustomAuthFilter jwtAuthFilter) throws Exception {
+            JWTCustomAuthFilter jwtAuthFilter
+    ) throws Exception {
+
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/login/**").permitAll();
+                    auth.requestMatchers("/api/auth/login").permitAll();
                     auth.anyRequest().authenticated();
                 })
-                .oauth2Login(oauth -> oauth.successHandler(successHandler))
-                .oauth2ResourceServer(oauth2Rs -> oauth2Rs.jwt(Customizer.withDefaults()))
+                .oauth2Login(oauth -> oauth
+                        .successHandler(successHandler)
+                )
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(Customizer.withDefaults())
+                )
                 .addFilterAfter(jwtAuthFilter, BearerTokenAuthenticationFilter.class)
                 .build();
     }
+
 }

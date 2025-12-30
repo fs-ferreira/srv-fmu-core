@@ -11,9 +11,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
@@ -21,6 +22,8 @@ import org.springframework.security.oauth2.server.authorization.settings.ClientS
 import org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat;
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -44,11 +47,10 @@ public class AuthorizationServiceConfig {
         http
                 .securityMatcher(authorizationServerConfigurer.getEndpointsMatcher())
                 .with(authorizationServerConfigurer, Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults())
                 .oauth2Login(Customizer.withDefaults())
-                .authorizeHttpRequests(authorize ->
-                        authorize.anyRequest().authenticated());
-
+                .authorizeHttpRequests(authorize -> {
+                    authorize.anyRequest().authenticated();
+                });
         return http.build();
     }
 
@@ -70,7 +72,10 @@ public class AuthorizationServiceConfig {
 
     @Bean
     public ClientSettings clientSettings() {
-        return ClientSettings.builder().requireAuthorizationConsent(false).build();
+        return ClientSettings.builder()
+                .requireProofKey(true)
+                .requireAuthorizationConsent(false)
+                .build();
     }
 
     @Bean
@@ -96,5 +101,10 @@ public class AuthorizationServiceConfig {
     @Bean
     public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
         return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
+    }
+
+    @Bean
+    public SecurityContextRepository securityContextRepository() {
+        return new HttpSessionSecurityContextRepository();
     }
 }
