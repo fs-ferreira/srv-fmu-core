@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @ApiResponse(
         responseCode = "500",
-        description = "Erro inesperado do servidor",
+        description = "Unexpected server error",
         content = @Content(
                 mediaType = "application/json",
                 schema = @Schema(implementation = ErrorResponse.class)
