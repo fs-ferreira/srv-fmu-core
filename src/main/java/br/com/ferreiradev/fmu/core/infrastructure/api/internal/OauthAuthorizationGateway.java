@@ -1,6 +1,7 @@
 package br.com.ferreiradev.fmu.core.infrastructure.api.internal;
 
 import br.com.ferreiradev.fmu.core.domain.model.TokenResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -11,11 +12,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OauthAuthorizationGateway {
 
     private static final String API_SCOPE  = "ADMIN";
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
 
     @Value("${security.oauth2.client.client-id}")
     private String CLIENT_ID;
