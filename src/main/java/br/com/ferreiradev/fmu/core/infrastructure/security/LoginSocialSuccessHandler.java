@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.List;
 
-import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.INVALID_CREDENTIALS_MESSAGE;
+import static br.com.ferreiradev.fmu.core.domain.constants.ErrorConstants.INVALID_CREDENTIALS_MESSAGE;
 
 @Component
 @RequiredArgsConstructor
@@ -48,6 +48,7 @@ public class LoginSocialSuccessHandler extends SavedRequestAwareAuthenticationSu
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+//        response.sendRedirect("http://localhost:8080/");
         super.onAuthenticationSuccess(request,response,authentication);
 
     }

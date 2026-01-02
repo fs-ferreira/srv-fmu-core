@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.INVALID_CREDENTIALS_MESSAGE;
+import static br.com.ferreiradev.fmu.core.domain.constants.ErrorConstants.INVALID_CREDENTIALS_MESSAGE;
 
 @Deprecated(forRemoval = true)
 @RequiredArgsConstructor

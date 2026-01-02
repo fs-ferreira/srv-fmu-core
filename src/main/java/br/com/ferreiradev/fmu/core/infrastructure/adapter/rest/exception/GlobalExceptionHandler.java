@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.*;
+import static br.com.ferreiradev.fmu.core.domain.constants.ErrorConstants.*;
 
 @Slf4j
 @Hidden

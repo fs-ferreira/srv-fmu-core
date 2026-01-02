@@ -13,8 +13,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.core.AuthorizationGrantType;
-import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
@@ -29,8 +27,10 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.time.Duration;
 import java.util.UUID;
+
+import static br.com.ferreiradev.fmu.core.domain.constants.SecurityConstants.ACCESS_TOKEN_TTL;
+import static br.com.ferreiradev.fmu.core.domain.constants.SecurityConstants.REFRESH_TOKEN_TTL;
 
 @Configuration
 @EnableWebSecurity
@@ -65,15 +65,15 @@ public class AuthorizationServiceConfig {
         return TokenSettings
                 .builder()
                 .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
-                .accessTokenTimeToLive(Duration.ofMinutes(5))
-                .refreshTokenTimeToLive(Duration.ofMinutes(30))
+                .accessTokenTimeToLive(ACCESS_TOKEN_TTL)
+                .refreshTokenTimeToLive(REFRESH_TOKEN_TTL)
+                .reuseRefreshTokens(true)
                 .build();
     }
 
     @Bean
     public ClientSettings clientSettings() {
         return ClientSettings.builder()
-                .requireProofKey(true)
                 .requireAuthorizationConsent(false)
                 .build();
     }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.NOT_FOUND_MESSAGE;
+import static br.com.ferreiradev.fmu.core.domain.constants.ErrorConstants.NOT_FOUND_MESSAGE;
 
 @Service
 @RequiredArgsConstructor

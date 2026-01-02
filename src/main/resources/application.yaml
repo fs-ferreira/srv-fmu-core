@@ -27,6 +27,15 @@ spring:
           google:
             client-id: ${GOOGLE_OAUTH_CLIENT_ID}
             client-secret: ${GOOGLE_OAUTH_SECRET_KEY}
+            scope:
+              - openid
+              - profile
+              - email
+  data:
+    redis:
+      host: redis
+      port: 6379
+      timeout: 2000
 server:
   port: 8080
 management:
@@ -41,6 +50,12 @@ management:
 snowflake:
   datacenter-id: ${DATACENTER_ID}
   worker-id: ${WORKER_ID}
+
+security:
+  oauth2:
+    client:
+      client-id: ${CUSTOM_CLIENT_ID}
+      client-secret: ${CUSTOM_CLIENT_SECRET}
 
 logging:
   level:

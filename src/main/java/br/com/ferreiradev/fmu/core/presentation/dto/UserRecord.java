@@ -6,8 +6,8 @@ import lombok.Builder;
 
 import java.util.List;
 
-import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.INVALID_EMAIL_MESSAGE;
-import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.REQUIRED_FIELD_MESSAGE;
+import static br.com.ferreiradev.fmu.core.domain.constants.ErrorConstants.INVALID_EMAIL_MESSAGE;
+import static br.com.ferreiradev.fmu.core.domain.constants.ErrorConstants.REQUIRED_FIELD_MESSAGE;
 
 @Builder
 public record UserRecord(@NotBlank(message = REQUIRED_FIELD_MESSAGE) String username,

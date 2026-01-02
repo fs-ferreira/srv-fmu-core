@@ -11,7 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import static br.com.ferreiradev.fmu.core.infrastructure.adapter.rest.exception.constants.ErrorConstants.INVALID_CREDENTIALS_MESSAGE;
+import static br.com.ferreiradev.fmu.core.domain.constants.ErrorConstants.INVALID_CREDENTIALS_MESSAGE;
 
 
 @Component
