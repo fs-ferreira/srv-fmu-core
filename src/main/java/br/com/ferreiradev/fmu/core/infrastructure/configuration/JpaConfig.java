@@ -1,11 +1,8 @@
 package br.com.ferreiradev.fmu.core.infrastructure.configuration;
 
-import br.com.ferreiradev.fmu.core.application.mapper.UserMapper;
-import br.com.ferreiradev.fmu.core.application.service.UserService;
 import br.com.ferreiradev.fmu.core.domain.model.auth.User;
 import br.com.ferreiradev.fmu.core.domain.repository.UserRepository;
 import br.com.ferreiradev.fmu.core.infrastructure.security.CustomAuthentication;
-import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

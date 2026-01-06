@@ -1,7 +1,6 @@
 package br.com.ferreiradev.fmu.core.infrastructure.security;
 
 import br.com.ferreiradev.fmu.core.application.service.UserService;
-import br.com.ferreiradev.fmu.core.domain.model.auth.User;
 import br.com.ferreiradev.fmu.core.presentation.dto.UserRecord;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
